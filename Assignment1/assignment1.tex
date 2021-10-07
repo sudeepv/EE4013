@@ -179,11 +179,43 @@ Initially i = 0, count = 0. Since the terminating condition is $i<5$, the loop r
         4 & 6 & 2 & 4 & 10\\
         \hline        
         \end{tabular}
-        \caption{Iteration Table}
 \end{table}
 The following line outputs the value of sum as the loop ends. 
 \begin{lstlisting}
     printf("%d\n", sum);
 \end{lstlisting}
 The value of sum = 10. Hence, output of the program is 10.
+
+\textbf{Code without using pointers}
+The main usage of pointers in the given code is by creating a pointer $*b = a + 4$ which stores the address of the array element a[4]. Instead, we can create another variable int b = $4$ which stores the index of the array element instead of it's address. The modified code is given below:
+\begin{lstlisting}
+#include <stdio.h>
+int main()
+{
+    int a[] = {2,4,6,8,10};
+    int i,sum = 0, b = 4;
+    for (i = 0; i < 5; i++)
+        sum = sum + (arr[b] - i) - arr[b-i];
+    printf("%d\n", sum);
+    return 0;
+}
+\end{lstlisting}
+As we are storing the index of the element in b instead of the pointer, we use $arr[b-i]$ to access the element instead of using $*(b-i)$. In the code, $(*b-i)$ is modified as $arr[b]-i$ and $*(b-i)$ is modified as $arr[b-i]$. The iteration process is shown in the table below:
+\begin{table}[ht]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        i & arr[b]-i & arr[b-i] & arr[b]-i - arr[b-i] & sum \\
+        \hline
+        1 & 9 & 8 & 1 & 1\\
+        \hline
+        2 & 8 & 6 & 2 & 3\\
+        \hline
+        3 & 7 & 4 & 3 & 6\\
+        \hline
+        4 & 6 & 2 & 4 & 10\\
+        \hline        
+        \end{tabular}
+\end{table}
+From the table, the answer is 10.
 \end{document}
